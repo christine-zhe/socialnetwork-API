@@ -13,11 +13,9 @@ const userController = {
     User.findOne({ _id: params.id })
       .populate({
         path: 'thoughts',
-        select: '-__v'
       })
       .populate({
         path: 'friends',
-        select: '-__v'
       })
       .then(dbUserData => {
         if (!dbUserData) {
@@ -33,7 +31,6 @@ const userController = {
   },
    getAllUser(req, res) {
     User.find({})
-      .select('-__v')
       .sort({ _id: -1 })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
